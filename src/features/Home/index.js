@@ -18,17 +18,12 @@ import {
 import HeadlineCarousel from '../../components/newsCarousel'
 import data from '../../api/data.json'
 import ProgressiveImage from '../../components/progressiveImage';
-import momentWithLocales from 'moment/min/moment-with-locales';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import ListNews from '../../components/ListNews/index'
 
 const App = () => {
-  const formatTime = (dateTime, currentFormat, toFormat) =>{
-    const date = momentWithLocales(dateTime,currentFormat );
-    date.locale('id');
-    return date.format(toFormat);
-  }
-
+  
 
   return (
     <>
@@ -41,35 +36,7 @@ const App = () => {
 
             </View>
           </View> 
-          <View style={{marginTop : 10}}>
-              <View style={{paddingHorizontal : 10}}>
-                  {/* Start Item */}
-                  {data && data.length && data.map((item,index) =>(
-                <View key={`${item.title}-${index}`} style={styles.containerItem}>
-                  <View style={{flex : 1, flexDirection : 'column'}}>
-                    <Text style={styles.itemTitle}>{item.title}</Text>
-                    <View style={{flexDirection : 'row'}}>
-                    <Text style={styles.itemDate}>{item.modified && formatTime(item.modified, 'YYYY-MM-DD HH:mm:ss', 'dddd, DD MMMM YYYY')}</Text>
-                     <View style={{flexDirection : 'row', flex : 1, justifyContent  : 'flex-end'}}>
-                     <TouchableOpacity style={{marginRight : 10}}>
-                        <Icon name='share-social-outline' size={20} color={'#737373'}/>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                        <Icon name='bookmark-outline' size={20} color={'#737373'}/>
-                      </TouchableOpacity>
-                    </View>
-                    </View>
-                  </View>
-                  {item.attachments.length &&  (
-                    <View style={{height : 120, width : 120, marginLeft : 20}}>
-                      <ProgressiveImage source={{uri : item.attachments[0].images.medium.url}} style={styles.imageStyle}    resizeMode="cover"/>
-                    </View>
-                  )}
-                </View>
-              ) )}
-              {/* End of item */}
-              </View>
-          </View>
+          <ListNews />
         </ScrollView>
 
     </>

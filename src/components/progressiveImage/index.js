@@ -42,7 +42,7 @@ export class ProgressiveImage extends Component {
                     {...props}
                     source={thumbnailSource}
                     style={[style, {opacity : this.thumbnailAnimated}]}
-                    blurRadius={3}
+                    blurRadius={2}
                     onLoad={this.handleThumbnailLoaded}
                     />
                     <Animated.Image
