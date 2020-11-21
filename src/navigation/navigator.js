@@ -62,7 +62,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     },
     activeTintColor : '#14B4AD',
     inactiveTintColor : '#969696'
-  }
+  },
 })
 
 
@@ -73,7 +73,13 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
         navigationOptions: ({ navigation }) => ({
           activeColor : '#181A1B',
           headerShown : false,
+          headerTitle : "Sembuh Negeriku",
           labeled : true,
+          headerStyleInterpolator : () =>({
+            backgroundStyle : {
+              backgroundColor : 'red'
+            }
+          })
         }),
       },
     },

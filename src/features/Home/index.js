@@ -21,6 +21,7 @@ import ProgressiveImage from '../../components/progressiveImage';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ListNews from '../../components/ListNews/index'
+import HeaderMain from 'components/headerMain';
 
 const App = () => {
   
@@ -32,8 +33,6 @@ const App = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <HeadlineCarousel containerStyle={styles.carouselContainer} />
-      
-
             </View>
           </View> 
           <ListNews />

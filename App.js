@@ -1,8 +1,9 @@
 
 import React from 'react';
+import {  LogBox } from 'react-native'
 import Root from './Root'
 const App = () => {
-  console.disableYellowBox = true;
+  LogBox.ignoreAllLogs(true)
   return (
         <Root />
   );
