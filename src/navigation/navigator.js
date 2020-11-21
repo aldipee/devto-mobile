@@ -16,9 +16,9 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     navigationOptions : ({navigation}) => ({
       shifting : true,
       labeled : true,
-      tabBarLabel : 'Home',
+      tabBarLabel : 'Berita',
       tabBarIcon : ({color, size}) =>(
-        <Icon name='home-outline' size={size} color={color}  />
+        <Icon name='md-newspaper-outline' size={size} color={color}  />
       ),
     })
   },
@@ -39,6 +39,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     screen : Home,
     navigationOptions : ({navigation}) => ({
       shifting : true,
+      tabBarLabel : 'Favorit',
       tabBarIcon : ({color, size}) =>(
         <Icon name='ios-bookmark-outline' size={size} color={color}  />
       ),
@@ -48,8 +49,9 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     screen : Home,
     navigationOptions : ({navigation}) => ({
       shifting : true,
+      tabBarLabel : 'Pengaturan',
       tabBarIcon : ({color, size}) =>(
-        <Icon name='ios-settings-outline' size={size} color={color}  />
+        <Icon name='md-ellipsis-horizontal-outline' size={size} color={color}  />
       ),
     })
   },
