@@ -1,10 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+
 
 import React from 'react';
 import {
@@ -21,23 +15,28 @@ import {
   LearnMoreLinks,
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import HeadlineCarousel from '../../components/newsCarousel'
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
+   
+     
+     
+        <ScrollView style={{flex : 1}}>
+     
+          
+          
+    
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              <HeadlineCarousel containerStyle={{
+                height : 200,
+                width  :'100%',
+                flex : 1
+              }} />
+
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
                 MEONGGGGGGGGGGG
@@ -45,16 +44,16 @@ const App = () => {
             </View>
            
             <LearnMoreLinks />
-          </View>
+          </View> 
         </ScrollView>
-      </SafeAreaView>
+
     </>
   );
 };
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    flex : 1
   },
   engine: {
     position: 'absolute',
@@ -64,8 +63,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    marginTop: 10,
+    paddingHorizontal: 15,
   },
   sectionTitle: {
     fontSize: 24,
