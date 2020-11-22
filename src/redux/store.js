@@ -1,0 +1,22 @@
+import { createStore, applyMiddleware } from 'redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import createSagaMiddleware from 'redux-saga';
+import { persistReducer, persistStore } from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import logger from 'redux-logger';
+import rootReducer from 'redux/reducers';
+
+const sagaMiddleware = createSagaMiddleware()
+const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage,
+    stateReconciler: autoMergeLevel2
+};
+const persistRootReducer = persistReducer(persistConfig, rootReducer)
+
+const store = createStore(persistRootReducer, applyMiddleware(logger, sagaMiddleware))
+
+export const persistor = persistStore(store)
+// Run all sagass
+// sagaMiddleware.run(watcherSaga)
+export default store

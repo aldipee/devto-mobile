@@ -7,12 +7,12 @@ import NewsItem from '../newsItem'
 import { Styles } from './styleListNews'
 
 const ListNews = () => {
-  const renderItem = ({item}) => (<NewsItem item={item}/>)
+  const renderItem = ({ item }) => (<NewsItem item={item} />)
   return (
     <>
-          <View style={Styles.container}>
-            <FlatList data={DATA} renderItem={renderItem} keyExtractor={(item) => item.id} />             
-          </View>
+      <View style={Styles.container}>
+        <FlatList data={DATA} renderItem={renderItem} keyExtractor={(item) => `${item.id}`} />
+      </View>
     </>
   );
 };
