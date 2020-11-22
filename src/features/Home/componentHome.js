@@ -27,7 +27,7 @@ const App = (props) => {
                         <HeadlineCarousel containerStyle={styles.carouselContainer} />
                     </View>
                 </View>
-                <ListNews />
+                <ListNews loading={props.loading}/>
             </ScrollView>
 
         </>

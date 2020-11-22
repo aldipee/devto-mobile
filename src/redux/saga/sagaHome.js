@@ -6,7 +6,7 @@ import { requestRecentNews, receivedRecentNews, failedRecentNews } from 'redux/a
 
 export function* getRecentPostWorker() {
     try {
-        const result = yield call(get, 'api/get_recent_posts/?count=5&page=1');
+        const result = yield call(get, 'api/get_recent_posts/?count=20&page=1');
         console.log(result, 'result')
         if (result.status == 'ok') {
             console.log('Meonggg')

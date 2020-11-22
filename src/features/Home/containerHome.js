@@ -6,6 +6,7 @@ import Home from './componentHome';
 const mapStateToProps = (state) => {
   return {
     globalReducer: state.globalReducer,
+    loading : state.homeReducer.loading
   };
 };
 
