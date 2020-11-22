@@ -17,6 +17,7 @@ module.exports = {
         root: ['./src/'],
         alias: {
           'GlobalStyles': './src/styles/style',
+          'API': './src/api/api',
         },
       },
     ],
