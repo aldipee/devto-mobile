@@ -11,7 +11,11 @@ const sagaMiddleware = createSagaMiddleware()
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    stateReconciler: autoMergeLevel2
+    stateReconciler: autoMergeLevel2,
+    blacklist: [
+        'homeReducer',
+        'articleReducer'
+      ],
 };
 const persistRootReducer = persistReducer(persistConfig, rootReducer)
 

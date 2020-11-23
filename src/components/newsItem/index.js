@@ -31,7 +31,7 @@ const NewsItem = ({ item, ...props }) => {
   }, [])
 
   const onPress = (idPost) => {
-    navigation.navigate('Article')
+    navigation.navigate('Article', {idPost})
   }
 
 

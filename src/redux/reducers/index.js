@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import globalReducer from './Global';
 import homeReducer from './Home';
-
+import articleReducer from './Article'
 const appReducer = combineReducers({
     globalReducer,
-    homeReducer
+    homeReducer,
+    articleReducer
 });
 
 const rootReducer = (state, action) => {
