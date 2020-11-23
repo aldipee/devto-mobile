@@ -28,7 +28,6 @@ const NewsItem = ({ item, ...props }) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.log(item, 'item')
   }, [])
 
   const onPress = (idPost) => {

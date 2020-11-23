@@ -95,7 +95,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
       ...TransitionPresets.RevealFromBottomAndroid,
 
     },
-    initialRouteName: 'Main',
+    initialRouteName: 'Article',
     cardStyle: {
       opacity: 1,
       backgroundColor: 'transparent',
