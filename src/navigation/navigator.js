@@ -1,10 +1,10 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets, HeaderBackButton } from '@react-navigation/stack';
 import { createCompatNavigatorFactory } from '@react-navigation/compat'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
-import { Animated, Easing } from 'react-native';
+import ArticleButton from 'components/articleButton';
 
 // Import all screens
 import Home from 'features/Home/routerHome'
@@ -86,7 +86,27 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
     },
     Article: {
       screen: Article,
-
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: "",
+        headerLeft: (props) => (
+          <HeaderBackButton
+            {...props}
+          />
+        ),
+        headerRight: (props) => (
+          <ArticleButton {...props} />
+        ),
+        headerRightContainerStyle: {
+          height: '100%',
+          width: '25%',
+          paddingHorizontal: 10,
+        },
+        headerStyle: {
+          backgroundColor: '#fff',
+          elevation: 0,
+          height: 45,
+        }
+      }),
     }
   },
   {
@@ -95,7 +115,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
       ...TransitionPresets.RevealFromBottomAndroid,
 
     },
-    initialRouteName: 'Article',
+    initialRouteName: 'Main',
     cardStyle: {
       opacity: 1,
       backgroundColor: 'transparent',
