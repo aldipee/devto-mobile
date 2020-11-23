@@ -30,9 +30,9 @@ const App = (props) => {
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 }} stickyHeaderIndices={[1]}>
                 {/* Big Image */}
-                <View style={{ height: 250, width: '100%' }}>
+                <View style={{ height: 200, width: '100%' }}>
                     <ProgressiveImage resizeMode="cover" thumbnailSource={{ uri: `https://images.pexels.com/photos/671557/pexels-photo-671557.jpeg?w=50&buster=${Math.random()}` }}
                         source={{ uri: `https://images.pexels.com/photos/671557/pexels-photo-671557.jpeg` }}
                         style={{ height: '100%', width: '100%' }} />
@@ -40,13 +40,23 @@ const App = (props) => {
                 {/* End Of big Image */}
 
                 {/* Render Title */}
-                <View style={{ paddingHorizontal: 20, backgroundColor: '#fff', paddingTop: 20, paddingBottom: 10 }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{DATA.post.title}</Text>
+                <View style={{
+                    paddingHorizontal: 20, backgroundColor: '#fff', paddingTop: 3, paddingBottom: 5,
+                    elevation: 1,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                        width: 0,
+                        height: 4,
+                    },
+                    shadowOpacity: 0.18,
+                    shadowRadius: 4.00,
+                }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{DATA.post.title}</Text>
                     <Text style={{ fontSize: 14, color: '#878787' }}>{`${DATA.post.date && formatTime(DATA.post.date, 'YYYY-MM-DD HH:mm:ss', 'dddd DD MMMM YYYY')} | ${DATA.post.categories[0].title}`}</Text>
                 </View>
 
                 {/* Render HTML */}
-                <View style={{ paddingHorizontal: 20, backgroundColor: '#fff', marginTop: 10 }}>
+                <View style={{ paddingHorizontal: 20, backgroundColor: '#fff', marginTop: 10, marginBottom: 20 }}>
                     <HTML html={DATA.post.content} imagesMaxWidth={Dimensions.get('window').width} tagsStyles={{
                         p: {
                             color: '#000',
@@ -55,7 +65,7 @@ const App = (props) => {
                             marginTop: 25,
                         },
                         img: {
-                            width: 300
+                            width: 600
                         }
                     }} />
                 </View>
