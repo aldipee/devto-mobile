@@ -24,11 +24,11 @@ const App = (props) => {
             <ScrollView style={{ flex: 1 }}>
                 <View style={styles.body}>
                     <View style={styles.sectionContainer}>
-                        <HeadlineCarousel containerStyle={styles.carouselContainer} />
+                        <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} />
                     </View>
                 </View>
-                <View style={{backgroundColor : '#fff', marginTop : 10}}>
-                    <ListNews loading={props.loading}/>
+                <View style={{ backgroundColor: '#fff', marginTop: 10 }}>
+                    <ListNews loading={props.loading} />
                 </View>
             </ScrollView>
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         right: 0,
     },
     body: {
-        backgroundColor: '#ebebeb',
+        backgroundColor: '#fff',
     },
     sectionContainer: {
         marginTop: 10,
