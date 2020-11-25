@@ -70,8 +70,8 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
 const config = {
   animation: 'spring',
   config: {
-    stiffness: 400,
-    damping: 200,
+    stiffness: 4000,
+    damping: 1000,
     mass: 1,
     overshootClamping: true,
     restDisplacementThreshold: 0.01,

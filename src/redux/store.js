@@ -19,7 +19,7 @@ const persistConfig = {
 };
 const persistRootReducer = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persistRootReducer, applyMiddleware(logger, sagaMiddleware))
+const store = createStore(persistRootReducer, applyMiddleware( sagaMiddleware))
 
 export const persistor = persistStore(store)
 // Run all sagass

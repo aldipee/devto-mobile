@@ -63,7 +63,9 @@ const NewsItem = ({ item, ...props }) => {
             <ProgressiveImage thumbnailSource={{ uri: item.attachments[0].images["post-thumbnail"].url }} source={{ uri: item.attachments[0].images.medium.url }} style={Styles.imageStyle} resizeMode="cover" />
           </View>
         )}
+     
       </View>
+      <View style={Styles.seperator}/>
     </React.Fragment >
   );
 };
