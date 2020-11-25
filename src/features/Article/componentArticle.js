@@ -40,7 +40,7 @@ const ArticleLoading = (props) =>(
         </View>
         <View style={[Styles.containerContent, { paddingTop : 35}]} >
             <PlaceholderLine style={{width : '60%', marginBottom : 36}} />
-            {placeHolder.map((data, index) =>   <PlaceholderLine style={{width : '100%'}} /> )}
+            {placeHolder.map((data, index) =>   <PlaceholderLine key={index} style={{width : '100%'}} /> )}
         </View>
 
     </Placeholder>

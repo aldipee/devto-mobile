@@ -67,6 +67,17 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   },
 })
 
+const config = {
+  animation: 'spring',
+  config: {
+    stiffness: 400,
+    damping: 200,
+    mass: 1,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+}
+}
 
 export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
   {
@@ -94,7 +105,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
           />
         ),
         headerRight: (props) => (
-          <ArticleButton {...props} />
+          <ArticleButton {...props} url={navigation.getParam('url')}/>
         ),
         headerRightContainerStyle: {
           height: '100%',
@@ -112,8 +123,11 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
   {
     mode: 'modal',
     defaultNavigationOptions: {
-      ...TransitionPresets.RevealFromBottomAndroid,
-
+      gestureDirection : 'vertical',
+      transitionSpec : {
+        close  : config,
+        open : config
+      }
     },
     initialRouteName: 'Main',
     cardStyle: {

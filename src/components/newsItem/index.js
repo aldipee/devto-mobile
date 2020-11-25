@@ -18,6 +18,7 @@ import momentWithLocales from 'moment/min/moment-with-locales';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Styles } from './styleNewsItem'
 import { useNavigation } from '@react-navigation/native';
+import { onShare } from 'utilities/onShare'
 
 const NewsItem = ({ item, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
@@ -30,8 +31,8 @@ const NewsItem = ({ item, ...props }) => {
   useEffect(() => {
   }, [])
 
-  const onPress = (idPost) => {
-    navigation.navigate('Article', {idPost})
+  const onPress = (idPost, url) => {
+    navigation.navigate('Article', {idPost, url})
   }
 
 
@@ -39,7 +40,7 @@ const NewsItem = ({ item, ...props }) => {
     <React.Fragment>
       <View key={`${item.title}-${item.id}`} style={Styles.containerItem}>
         <View style={{ flex: 1, flexDirection: 'column' }}>
-          <TouchableOpacity onPress={() => onPress(item.id)}>
+          <TouchableOpacity onPress={() => onPress(item.id, item.url)}>
             <Text style={Styles.itemTitle}>{item.title}</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -48,7 +49,7 @@ const NewsItem = ({ item, ...props }) => {
               <Text style={Styles.itemCategory}>{item.categories[0].title}</Text>
             </View>
             <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-              <TouchableOpacity style={{ marginRight: 10 }}>
+              <TouchableOpacity style={{ marginRight: 10 }} onPress={() => onShare(item.url)}>
                 <Icon name='share-social-outline' size={20} color={'#737373'} />
               </TouchableOpacity>
               <TouchableOpacity>
