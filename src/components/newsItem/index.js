@@ -19,9 +19,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Styles } from './styleNewsItem'
 import { useNavigation } from '@react-navigation/native';
 import { onShare } from 'utilities/onShare'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { saveItem } from 'redux/actions/Global';
-import { useSelector } from 'react-redux';
 const NewsItem = ({ item, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
     const date = momentWithLocales(dateTime, currentFormat);
@@ -32,9 +31,9 @@ const NewsItem = ({ item, ...props }) => {
 
   useEffect(() => {
   }, [])
-
+  const theme = useSelector(state => state.globalReducer.theme)
   const onPress = (idPost, url) => {
-    navigation.navigate('Article', { idPost, url })
+    navigation.navigate('Article', { idPost, url, theme })
   }
 
   const onSave = (post) => {
@@ -42,7 +41,6 @@ const NewsItem = ({ item, ...props }) => {
   }
 
 
-  const theme = useSelector((state) => state.globalReducer.theme)
   return (
     <React.Fragment>
       <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>

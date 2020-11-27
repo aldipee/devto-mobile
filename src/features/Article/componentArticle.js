@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, } from 'react';
 import {
     StyleSheet,
     ScrollView,
@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import momentWithLocales from 'moment/min/moment-with-locales';
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 
 import { requestNewsDetail } from 'redux/actions/Article'
 import {
@@ -29,18 +29,18 @@ const w = Dimensions.get('window')
 
 
 const placeHolder = Array.from({ length: 10 }, (v, k) => k)
-const ArticleLoading = (props) =>(
+const ArticleLoading = ({theme, ...props}) =>(
     <>
-    <Placeholder Animation={Fade} >
-    <PlaceholderMedia isRound={false} style={[props.style], Styles.containerImage} />
-        <View style={[Styles.containerTitle, {paddingTop : 10}]}>
-          <PlaceholderLine style={{width : '100%'}} />
-          <PlaceholderLine style={{width : '100%'}} />
-          <PlaceholderLine style={{width : '100%'}} />
+    <Placeholder  >
+    <PlaceholderMedia isRound={false} style={[Styles.containerImage,{ backgroundColor : theme.PLACEHOLDER_COLOR}]} />
+        <View style={[Styles.containerTitle, {paddingTop : 10, backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR}}  />
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR}} />
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR}} />
         </View>
-        <View style={[Styles.containerContent, { paddingTop : 35}]} >
-            <PlaceholderLine style={{width : '60%', marginBottom : 36}} />
-            {placeHolder.map((data, index) =>   <PlaceholderLine key={index} style={{width : '100%'}} /> )}
+        <View style={[Styles.containerContent, { paddingTop : 35, backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]} >
+            <PlaceholderLine style={{width : '60%', marginBottom : 36, backgroundColor : theme.PLACEHOLDER_COLOR}} />
+            {placeHolder.map((data, index) =>   <PlaceholderLine key={index} style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR}} /> )}
         </View>
 
     </Placeholder>
@@ -49,6 +49,7 @@ const ArticleLoading = (props) =>(
 
 
 const Article = (props) => {
+    const theme = useSelector(state => state.globalReducer.theme)
     const {DATA} = props
     const formatTime = (dateTime, currentFormat, toFormat) => {
         const date = momentWithLocales(dateTime, currentFormat);
@@ -71,12 +72,12 @@ const Article = (props) => {
         <>
             <StatusBar barStyle="dark-content" />
                 {props.loading ? (
-                    <ScrollView>
-                             <ArticleLoading />
+                    <ScrollView style={{backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}}>
+                             <ArticleLoading theme={theme} />
                     </ScrollView>
                
                 ) : (
-                    <ScrollView style={{ flex: 1 }} stickyHeaderIndices={[1]}>
+                    <ScrollView style={{ flex: 1 , backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}} stickyHeaderIndices={[1]}>
                         {/* Big Image */}
                         {DATA && DATA.attachments && DATA.attachments.length !== 0 && (
                             <View style={Styles.containerImage}>
@@ -88,14 +89,19 @@ const Article = (props) => {
                         {/* End Of big Image */}
 
                         {/* Render Title */}
-                        <View style={Styles.containerTitle}>
-                            <Text style={Styles.textTitle}>{  DATA && DATA.title}</Text>
+                        <View style={[Styles.containerTitle, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                            <Text style={[Styles.textTitle, {color : theme.PRIMARY_TEXT_COLOR}]}>{  DATA && DATA.title}</Text>
                             <Text style={Styles.textDate}>{`${DATA  && DATA.date && formatTime(DATA.date, 'YYYY-MM-DD HH:mm:ss', 'dddd DD MMMM YYYY')} | ${DATA && DATA.categories &&  DATA.categories[0].title}`}</Text>
                         </View>
 
                         {/* Render HTML */}
-                        <View style={Styles.containerContent}>
-                            <HTML html={DATA  && DATA.content} imagesMaxWidth={Dimensions.get('window').width} tagsStyles={HTMLTagStyle} />
+                        <View style={[Styles.containerContent, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                            <HTML html={DATA  && DATA.content} imagesMaxWidth={Dimensions.get('window').width} tagsStyles={{...HTMLTagStyle, p : {
+                                color : theme.PRIMARY_TEXT_COLOR,
+                                fontSize: 17,
+                                lineHeight: 25,
+                                marginTop: 25,
+                            }}} />
                         </View>
                         </ScrollView>
                 )}

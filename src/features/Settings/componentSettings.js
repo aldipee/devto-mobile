@@ -29,7 +29,7 @@ const Settings = (props) => {
                         <Text style={[Styles.headerText, {color: '#8B95A2'}]}>Pengaturan</Text>
                     </View>
                     <View style={Styles.sectionContainer}>
-                   
+                            {/* Dark Mode */}
                             <View style={Styles.menuContainer}>
                                 <View style={{flexDirection : 'row'}}>
                                     <Icon name={theme.mode === 'dark' ? 'sunny-outline' : 'moon-outline' }  size={iconSize} color={theme.PRIMARY_TEXT_COLOR}/>
@@ -45,6 +45,7 @@ const Settings = (props) => {
                            
                             </View>
                             <View style={{backgroundColor : '#8f8f8f', height : 0.5, flex : 1, width : '89%', alignSelf : 'flex-end'}} />
+                            {/*  Notification */}
                             <View style={Styles.menuContainer}>
                                 <View style={{flexDirection : 'row'}}>
                                     <Icon name={'notifications-outline'}  size={iconSize} color={theme.PRIMARY_TEXT_COLOR}/>
@@ -54,7 +55,16 @@ const Settings = (props) => {
                                     </View>
                                 </View>
                             </View>
-                
+                            <View style={{backgroundColor : '#8f8f8f', height : 0.5, flex : 1, width : '89%', alignSelf : 'flex-end'}} />
+                            <View style={Styles.menuContainer}>
+                                <View style={{flexDirection : 'row'}}>
+                                    <Icon name={'notifications-outline'}  size={iconSize} color={theme.PRIMARY_TEXT_COLOR}/>
+                                    <View>
+                                        <Text style={[Styles.textMenu, { color: theme.PRIMARY_TEXT_COLOR }]}>Notification</Text>
+                                        <Text style={[Styles.textDesc,{ color: '#8B95A2'}]}>Enable dark mode for better experince</Text>
+                                    </View>
+                                </View>
+                            </View>
                     </View>
                 </View>
 

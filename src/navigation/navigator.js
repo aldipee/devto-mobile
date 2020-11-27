@@ -11,6 +11,7 @@ import TopBarBottom from 'components/tabBarBottom'
 import Home from 'features/Home/routerHome'
 import Article from 'features/Article/containerArticle';
 import Settings from 'features/Settings/containerSettings';
+import Header from 'components/header'
 import store from 'redux/store';
 // const { globalReducer: { theme } } = store.getState()
 
@@ -75,7 +76,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   },
 }, {
   tabBar : (props) => <TopBarBottom {...props} />,
-  initialRouteName : 'Settings',
+  initialRouteName : 'Home',
   tabBarOptions: {
     labelStyle: {
       fontWeight: 'bold'
@@ -113,27 +114,37 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
     },
     Article: {
       screen: Article,
-      navigationOptions: ({ navigation }) => ({
-        headerTitle: "",
-        headerLeft: (props) => (
-          <HeaderBackButton
-            {...props}
-          />
-        ),
-        headerRight: (props) => (
-          <ArticleButton {...props} url={navigation.getParam('url')} />
-        ),
-        headerRightContainerStyle: {
-          height: '100%',
-          width: '25%',
-          paddingHorizontal: 10,
-        },
-        headerStyle: {
-          backgroundColor: '#fff',
-          elevation: 0,
-          height: 45,
+      navigationOptions: ({ navigation, ...props }) => {
+        const theme = navigation.getParam('theme')
+        return {
+          headerLeft: (props) => {
+            console.log(props, 'meonggg')
+            return (
+              <HeaderBackButton
+                {...props}
+                tintColor={theme.PRIMARY_TEXT_COLOR}
+      
+              />
+            )
+          },
+          headerRight: (props) => {
+            return(
+              <ArticleButton {...props} url={navigation.getParam('url')} theme={theme} />
+            )
+          },
+          headerTitle : "",
+          headerStyle: {
+            backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+            elevation: 0,
+            height: 45,
+          },
+          headerRightContainerStyle: {
+            height: '100%',
+            width: '25%',
+            paddingHorizontal: 10,
+          },
         }
-      }),
+      },
     }
   },
   {

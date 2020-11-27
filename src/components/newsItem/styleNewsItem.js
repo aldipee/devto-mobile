@@ -16,16 +16,19 @@ export const Styles = StyleSheet.create({
   },
   imageStyle: { borderRadius: moderateScale(16), width: '100%', height: '100%' },
   itemTitle: {
-    fontWeight: 'bold',
     fontSize: MainResponsiveFontSize.font15,
     flex: 1,
     justifyContent: 'flex-start',
-    alignContent: 'flex-start'
+    alignContent: 'flex-start',
+    fontFamily : 'Lato-Bold',
+    lineHeight : moderateScale(20),
+    letterSpacing : 0.5,
   },
   itemDate: {
     fontSize: MainResponsiveFontSize.font10,
     color: '#999999',
-    marginBottom: moderateScale(4)
+    marginBottom: moderateScale(7),
+    marginTop : moderateScale(10)
   },
   itemCategory: {
     fontSize: MainResponsiveFontSize.font10,

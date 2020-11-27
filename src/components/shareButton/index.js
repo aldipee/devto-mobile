@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Styles, iconSize } from './styleShareButton';
 import { onShare } from 'utilities/onShare'
 
-const ShareButton = (props) => {
+const ShareButton = ({theme, ...props}) => {
     return (
         <TouchableOpacity onPress={() => onShare(props.url)}>
             <View>
-                <Icon name='share-social-outline' size={iconSize} color={'#000'} />
+                <Icon name='share-social-outline' size={iconSize} color={theme.SEMANTIC_COLOR} />
             </View>
         </TouchableOpacity>
     );
