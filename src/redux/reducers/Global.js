@@ -1,8 +1,11 @@
-import { SWITCH_THEME } from 'redux/actions/Global';
+import { SWITCH_THEME, SAVE_ITEM, UNSAVED_ITEM } from 'redux/actions/Global';
+import { lightTheme, darkTheme } from 'styles/theme';
 const initialState = {
     fontColor: '#ccc',
     backgroundColor: '#fff',
-    isDarkMode: false
+    isDarkMode: false,
+    savedItems: [],
+    theme: darkTheme
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -10,11 +13,27 @@ export default (state = initialState, { type, payload }) => {
         case SWITCH_THEME: {
             return {
                 ...state,
-                fontColor: payload.fontColor,
-                backgroundColor: payload.backgroundColor,
-                isDarkMode: payload
+                theme: payload
             }
         }
+
+        // Save Item on favorite
+        case SAVE_ITEM: {
+            return {
+                ...state,
+                savedItems: [...state.savedItems, payload]
+            }
+        }
+
+        // Unsaved Item from favorite by item ID
+        case UNSAVED_ITEM: {
+            const items = state.savedItems.map((item) => item.id !== payload)
+            return {
+                ...state,
+                savedItems: items
+            }
+        }
+
         default:
             return state;
     }

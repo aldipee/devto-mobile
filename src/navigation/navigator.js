@@ -5,10 +5,26 @@ import { createCompatNavigatorFactory } from '@react-navigation/compat'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import ArticleButton from 'components/articleButton';
+import { useSelector } from 'react-redux';
 
 // Import all screens
 import Home from 'features/Home/routerHome'
 import Article from 'features/Article/containerArticle';
+import Settings from 'features/Settings/containerSettings';
+import store from 'redux/store';
+// const { globalReducer: { theme } } = store.getState()
+
+store.subscribe(listener)
+function select(state) {
+  return state.globalReducer.theme
+}
+
+function listener() {
+  let data = select(store.getState())
+  return data
+}
+const theme = listener()
+
 
 const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   Home: {
@@ -48,7 +64,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     })
   },
   Settings: {
-    screen: Home,
+    screen: Settings,
     navigationOptions: ({ navigation }) => ({
       shifting: true,
       tabBarLabel: 'Pengaturan',
@@ -62,7 +78,10 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     labelStyle: {
       fontWeight: 'bold'
     },
-    activeTintColor: '#14B4AD',
+    style: {
+      backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+    },
+    activeTintColor: theme.SEMANTIC_COLOR,
     inactiveTintColor: '#969696'
   },
 })
@@ -76,24 +95,29 @@ const config = {
     overshootClamping: true,
     restDisplacementThreshold: 0.01,
     restSpeedThreshold: 0.01,
-}
+  }
 }
 
 export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
   {
     Main: {
       screen: BottomBar,
-      navigationOptions: ({ navigation }) => ({
-        activeColor: '#181A1B',
-        headerShown: false,
-        headerTitle: "Sembuh Negeriku",
-        labeled: true,
-        headerStyleInterpolator: () => ({
-          backgroundStyle: {
-            backgroundColor: 'red'
+      navigationOptions: ({ navigation, screenProps }) => {
+        console.log(props, 'MEONNNGG')
+        return (
+          {
+            activeColor: '#181A1B',
+            headerShown: false,
+            headerTitle: "Sembuh Negeriku",
+            labeled: true,
+            headerStyleInterpolator: () => ({
+              backgroundStyle: {
+                backgroundColor: 'red'
+              }
+            })
           }
-        })
-      }),
+        )
+      },
     },
     Article: {
       screen: Article,
@@ -105,7 +129,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
           />
         ),
         headerRight: (props) => (
-          <ArticleButton {...props} url={navigation.getParam('url')}/>
+          <ArticleButton {...props} url={navigation.getParam('url')} />
         ),
         headerRightContainerStyle: {
           height: '100%',
@@ -123,10 +147,10 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
   {
     mode: 'modal',
     defaultNavigationOptions: {
-      gestureDirection : 'vertical',
-      transitionSpec : {
-        close  : config,
-        open : config
+      gestureDirection: 'vertical',
+      transitionSpec: {
+        close: config,
+        open: config
       }
     },
     initialRouteName: 'Main',
@@ -137,18 +161,16 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
   }
 );
 
-class Navigator extends React.Component {
-  componentDidMount() {
-    console.log("ASDAd")
-    console.log({ ...TransitionPresets.RevealFromBottomAndroid, })
-  }
-  render() {
-    return (
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
 
-    );
-  }
+const Navigator = () => {
+  const theme = useSelector((state) => state.globalReducer.theme)
+
+  return (
+    <NavigationContainer>
+      <RootNavigator screenProps={theme} />
+    </NavigationContainer>
+
+  );
+
 }
 export default Navigator;

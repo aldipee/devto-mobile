@@ -1,0 +1,24 @@
+export const darkTheme = {
+    mode: 'dark',
+    PRIMARY_BACKGROUND_COLOR: '#212121',
+    SECONDARY_BACKROUND_COLOR: '#1C1C1C',
+    PRIMARY_TEXT_COLOR: '#FFF',
+    SECONDARY_TEXT_COLOR: '#f0f0f0',
+    PRIMARY_BUTTON_COLOR: '#23A8D9',
+    SEMANTIC_COLOR: '#F36F21',
+    SEPERATOR_COLOR: '#383838',
+    INACTIVE_COLOR: '#ebebeb',
+    STATUS_BAR_STYLE: 'light-content'
+}
+export const lightTheme = {
+    mode: 'light',
+    PRIMARY_BACKGROUND_COLOR: '#fff',
+    SECONDARY_BACKROUND_COLOR: '#fff',
+    PRIMARY_TEXT_COLOR: '#212121',
+    SECONDARY_TEXT_COLOR: '#999999',
+    PRIMARY_BUTTON_COLOR: '#23A8D9',
+    SEMANTIC_COLOR: '#14B4AD',
+    SEPERATOR_COLOR: '#ebebeb',
+    INACTIVE_COLOR: '#969696',
+    STATUS_BAR_STYLE: 'default'
+}

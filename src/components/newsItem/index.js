@@ -19,7 +19,9 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Styles } from './styleNewsItem'
 import { useNavigation } from '@react-navigation/native';
 import { onShare } from 'utilities/onShare'
-
+import { connect } from 'react-redux';
+import { saveItem } from 'redux/actions/Global';
+import { useSelector } from 'react-redux';
 const NewsItem = ({ item, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
     const date = momentWithLocales(dateTime, currentFormat);
@@ -32,28 +34,33 @@ const NewsItem = ({ item, ...props }) => {
   }, [])
 
   const onPress = (idPost, url) => {
-    navigation.navigate('Article', {idPost, url})
+    navigation.navigate('Article', { idPost, url })
+  }
+
+  const onSave = (post) => {
+    props.saveItem(post)
   }
 
 
+  const theme = useSelector((state) => state.globalReducer.theme)
   return (
     <React.Fragment>
-      <View key={`${item.title}-${item.id}`} style={Styles.containerItem}>
+      <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
         <View style={{ flex: 1, flexDirection: 'column' }}>
           <TouchableOpacity onPress={() => onPress(item.id, item.url)}>
-            <Text style={Styles.itemTitle}>{item.title}</Text>
+            <Text style={[Styles.itemTitle, { color: theme.PRIMARY_TEXT_COLOR }]}>{item.title}</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
             <View style={{ flexDirection: 'column' }}>
-              <Text style={Styles.itemDate}>{item.modified && formatTime(item.modified, 'YYYY-MM-DD HH:mm:ss', 'dddd, DD MMMM YYYY')}</Text>
-              <Text style={Styles.itemCategory}>{item.categories[0].title}</Text>
+              <Text style={[Styles.itemDate, { color: theme.SECONDARY_TEXT_COLOR }]}>{item.modified && formatTime(item.modified, 'YYYY-MM-DD HH:mm:ss', 'dddd, DD MMMM YYYY')}</Text>
+              <Text style={[Styles.itemCategory, { backgroundColor: theme.SEMANTIC_COLOR }]}>{item.categories[0].title}</Text>
             </View>
             <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
               <TouchableOpacity style={{ marginRight: 10 }} onPress={() => onShare(item.url)}>
-                <Icon name='share-social-outline' size={20} color={'#737373'} />
+                <Icon name='share-social-outline' size={20} color={theme.PRIMARY_TEXT_COLOR} />
               </TouchableOpacity>
-              <TouchableOpacity>
-                <Icon name='bookmark-outline' size={20} color={'#737373'} />
+              <TouchableOpacity onPress={() => onSave(item)}>
+                <Icon name={item.isSaved ? 'bookmark' : 'bookmark-outline'} size={20} color={theme.PRIMARY_TEXT_COLOR} />
               </TouchableOpacity>
             </View>
           </View>
@@ -63,9 +70,9 @@ const NewsItem = ({ item, ...props }) => {
             <ProgressiveImage thumbnailSource={{ uri: item.attachments[0].images["post-thumbnail"].url }} source={{ uri: item.attachments[0].images.medium.url }} style={Styles.imageStyle} resizeMode="cover" />
           </View>
         )}
-     
+
       </View>
-      <View style={Styles.seperator}/>
+      <View style={[Styles.seperator, { backgroundColor: theme.SEPERATOR_COLOR }]} />
     </React.Fragment >
   );
 };
@@ -99,5 +106,6 @@ export const NewsItemLoading = () => {
   )
 }
 
+const mapStateToProps = (state) => ({})
 
-export default NewsItem;
+export default connect(mapStateToProps, { saveItem })(NewsItem);

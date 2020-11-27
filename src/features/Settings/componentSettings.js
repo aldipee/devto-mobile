@@ -6,32 +6,37 @@ import {
     ScrollView,
     View,
     StatusBar,
+    Text,
+    TouchableOpacity
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { darkTheme, lightTheme } from 'styles/theme';
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import HeadlineCarousel from 'components/newsCarousel'
 import ListNews from 'components/ListNews'
 const App = (props) => {
-    useEffect(() => {
-        props.requestRecentNews()
-    }, [])
-    const theme = useSelector((state) => state.globalReducer.theme)
 
+    const theme = useSelector((state) => state.globalReducer.theme)
+    const onChangeTheme = () => {
+        props.switchTheme(theme.mode === 'dark' ? lightTheme : darkTheme)
+    }
     return (
         <>
             <StatusBar barStyle="dark-content" />
             <ScrollView style={{ flex: 1 }}>
                 <View style={[styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
+                    <View>
+                        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Pengaturan</Text>
+                    </View>
                     <View style={styles.sectionContainer}>
-                        <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} />
+                        <TouchableOpacity onPress={onChangeTheme}>
+                            <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>{theme.mode === 'dark' ? 'Light Theme' : 'Dark Theme'}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, marginTop: 10 }}>
-                    <ListNews loading={props.loading} />
-                </View>
+
             </ScrollView>
 
         </>
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
     sectionContainer: {
         marginTop: 10,
         paddingHorizontal: 15,
+        height: '100%'
     },
     sectionTitle: {
         fontSize: 24,

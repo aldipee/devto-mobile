@@ -15,10 +15,10 @@ export default (state = initialState, { type, payload }) => {
         }
         case RECEIVED_RECENT_NEWS: {
             // Since we only need 3 data for headeline, we get 3 lastest data from payload
-
+            const news = payload.length && payload.map(item => ({ ...item, isSaved: true }))
             return {
                 ...state,
-                news: payload,
+                news,
                 headLine: payload.length ? payload.slice(0, 3) : [],
                 loading: false
             }

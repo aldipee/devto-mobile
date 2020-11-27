@@ -9,17 +9,17 @@ import { watcherSaga } from 'redux/watcherSaga';
 
 const sagaMiddleware = createSagaMiddleware()
 const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-    stateReconciler: autoMergeLevel2,
-    blacklist: [
-        'homeReducer',
-        'articleReducer'
-      ],
+  key: 'root',
+  storage: AsyncStorage,
+  stateReconciler: autoMergeLevel2,
+  blacklist: [
+    'homeReducer',
+    'articleReducer',
+  ],
 };
 const persistRootReducer = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persistRootReducer, applyMiddleware( sagaMiddleware))
+const store = createStore(persistRootReducer, applyMiddleware(logger, sagaMiddleware))
 
 export const persistor = persistStore(store)
 // Run all sagass
