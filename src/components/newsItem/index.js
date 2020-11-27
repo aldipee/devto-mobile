@@ -52,7 +52,7 @@ const NewsItem = ({ item, ...props }) => {
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
             <View style={{ flexDirection: 'column' }}>
               <Text style={[Styles.itemDate, { color: theme.SECONDARY_TEXT_COLOR }]}>{item.modified && formatTime(item.modified, 'YYYY-MM-DD HH:mm:ss', 'dddd, DD MMMM YYYY')}</Text>
-              <Text style={[Styles.itemCategory, { backgroundColor: theme.SEMANTIC_COLOR }]}>{item.categories[0].title}</Text>
+              {/* <Text style={[Styles.itemCategory, { backgroundColor: theme.SEMANTIC_COLOR }]}>{item.categories[0].title}</Text> */}
             </View>
             <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
               <TouchableOpacity style={{ marginRight: 10 }} onPress={() => onShare(item.url)}>

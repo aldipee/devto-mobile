@@ -4,11 +4,10 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import { NewsItemLoading } from 'components/newsItem'
 import { connect } from 'react-redux'
-import DATA from '../../api/data.json'
 import NewsItem from '../newsItem'
 import { Styles } from './styleListNews'
 
-const ListNews = ({loading, data, ...props}) => {
+const ListNews = ({loading, data, saved,...props}) => {
   const renderItem = ({ item }) => (<NewsItem item={item} />)
   if(loading){
     const placeHolder = Array.from({ length: 5 }, (v, k) => k)
@@ -20,7 +19,7 @@ const ListNews = ({loading, data, ...props}) => {
   }
   return (
       <View style={Styles.container}>
-            <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => `${item.id}`} />
+            <FlatList data={saved ? saved : data} renderItem={renderItem} keyExtractor={(item) => `${item.id}`} />
       </View>
   );
 };

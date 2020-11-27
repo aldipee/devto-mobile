@@ -9,6 +9,7 @@ import TopBarBottom from 'components/tabBarBottom'
 
 // Import all screens
 import Home from 'features/Home/routerHome'
+import Saved from 'features/Saved/containerSaved'
 import Article from 'features/Article/containerArticle';
 import Settings from 'features/Settings/containerSettings';
 import Header from 'components/header'
@@ -56,7 +57,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     })
   },
   Saved: {
-    screen: Home,
+    screen: Saved,
     navigationOptions: ({ navigation }) => ({
       shifting: true,
       tabBarLabel: 'Favorit',
@@ -77,7 +78,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   },
 }, {
   tabBar : (props) => <TopBarBottom {...props} />,
-  initialRouteName : 'Home',
+  initialRouteName : 'Saved',
   tabBarOptions: {
     labelStyle: {
       fontWeight: 'bold'
