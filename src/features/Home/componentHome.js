@@ -23,7 +23,7 @@ const App = (props) => {
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 , backgroundColor  : theme.PRIMARY_BACKGROUND_COLOR }}>
                 <View style={[styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
                     <View style={styles.sectionContainer}>
                         <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} />

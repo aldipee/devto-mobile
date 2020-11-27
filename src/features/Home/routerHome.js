@@ -1,6 +1,7 @@
 import React from 'react'
 import { createCompatNavigatorFactory } from '@react-navigation/compat'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import TabBarTop from 'components/tabBarTop'
 import store from 'redux/store';
 
 const { globalReducer: { theme } } = store.getState()
@@ -12,19 +13,11 @@ const TopBar = createCompatNavigatorFactory(createMaterialTopTabNavigator)({
     Rilis: { screen: Home },
     Blog: { screen: Home }
 }, {
+    tabBar : (props) => <TabBarTop {...props} />,
     tabBarOptions: {
         labelStyle: {
             fontWeight: 'bold',
         },
-        indicatorStyle: {
-            backgroundColor: theme.SEMANTIC_COLOR,
-            height: 4
-        },
-        style: {
-            height: 40,
-            backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
-        },
-        activeTintColor: theme.SEMANTIC_COLOR,
         inactiveTintColor: '#969696'
     }
 })

@@ -5,7 +5,7 @@ import { createCompatNavigatorFactory } from '@react-navigation/compat'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import ArticleButton from 'components/articleButton';
-import { useSelector } from 'react-redux';
+import TopBarBottom from 'components/tabBarBottom'
 
 // Import all screens
 import Home from 'features/Home/routerHome'
@@ -74,14 +74,11 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     })
   },
 }, {
+  tabBar : (props) => <TopBarBottom {...props} />,
   tabBarOptions: {
     labelStyle: {
       fontWeight: 'bold'
     },
-    style: {
-      backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
-    },
-    activeTintColor: theme.SEMANTIC_COLOR,
     inactiveTintColor: '#969696'
   },
 })
@@ -103,18 +100,12 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
     Main: {
       screen: BottomBar,
       navigationOptions: ({ navigation, screenProps }) => {
-        console.log(props, 'MEONNNGG')
         return (
           {
             activeColor: '#181A1B',
             headerShown: false,
             headerTitle: "Sembuh Negeriku",
             labeled: true,
-            headerStyleInterpolator: () => ({
-              backgroundStyle: {
-                backgroundColor: 'red'
-              }
-            })
           }
         )
       },
@@ -163,11 +154,11 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
 
 
 const Navigator = () => {
-  const theme = useSelector((state) => state.globalReducer.theme)
+ 
 
   return (
     <NavigationContainer>
-      <RootNavigator screenProps={theme} />
+      <RootNavigator />
     </NavigationContainer>
 
   );
