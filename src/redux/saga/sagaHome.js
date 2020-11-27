@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { get } from 'API';
 import { requestRecentNews, receivedRecentNews, failedRecentNews } from 'redux/actions/Home';
 import { requestNewsDetail, receivedNewsDetails, failedNewsDetails} from 'redux/actions/Article'
@@ -11,7 +11,8 @@ export function* getRecentPostWorker() {
         console.log(result, 'result')
         if (result.status == 'ok') {
             console.log('Meonggg')
-            yield put(receivedRecentNews(result.posts))
+            const savedItems = yield select(state => state.globalReducer.savedItems)
+            yield put(receivedRecentNews(result.posts, savedItems))
         }
     } catch (error) {
 

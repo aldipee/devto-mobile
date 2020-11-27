@@ -13,8 +13,8 @@ const persistConfig = {
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2,
   blacklist: [
-    'homeReducer',
     'articleReducer',
+    'homeReducer'
   ],
 };
 const persistRootReducer = persistReducer(persistConfig, rootReducer)

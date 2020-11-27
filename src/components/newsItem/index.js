@@ -20,7 +20,7 @@ import { Styles } from './styleNewsItem'
 import { useNavigation } from '@react-navigation/native';
 import { onShare } from 'utilities/onShare'
 import { connect, useSelector } from 'react-redux';
-import { saveItem } from 'redux/actions/Global';
+import { saveItem, unsavedItem } from 'redux/actions/Global';
 const NewsItem = ({ item, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
     const date = momentWithLocales(dateTime, currentFormat);
@@ -32,12 +32,13 @@ const NewsItem = ({ item, ...props }) => {
   useEffect(() => {
   }, [])
   const theme = useSelector(state => state.globalReducer.theme)
-  const onPress = (idPost, url) => {
-    navigation.navigate('Article', { idPost, url, theme })
+  const onPress = (idPost, url, isSaved) => {
+    navigation.navigate('Article', { idPost, url, theme, isSaved})
   }
 
   const onSave = (post) => {
-    props.saveItem(post)
+    !post.isSaved ? props.saveItem(post) : props.unsavedItem(post.id)
+    
   }
 
 
@@ -45,7 +46,7 @@ const NewsItem = ({ item, ...props }) => {
     <React.Fragment>
       <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
         <View style={{ flex: 1, flexDirection: 'column' }}>
-          <TouchableOpacity onPress={() => onPress(item.id, item.url)}>
+          <TouchableOpacity onPress={() => onPress(item.id, item.url, item.isSaved)}>
             <Text style={[Styles.itemTitle, { color: theme.PRIMARY_TEXT_COLOR }]}>{item.title}</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -106,4 +107,4 @@ export const NewsItemLoading = ({placeHolderColor}) => {
 
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, { saveItem })(NewsItem);
+export default connect(mapStateToProps, { saveItem, unsavedItem})(NewsItem);

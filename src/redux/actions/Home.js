@@ -8,10 +8,11 @@ export const requestRecentNews = () => {
         type: REQUEST_RECENT_NEWS,
     }
 }
-export const receivedRecentNews = (data) => {
+export const receivedRecentNews = (data, savedItems) => {
     return {
         type: RECEIVED_RECENT_NEWS,
-        payload: data
+        payload: data,
+        savedItems
     }
 }
 export const failedRecentNews = () => {

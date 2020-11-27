@@ -17,6 +17,7 @@ import store from 'redux/store';
 
 store.subscribe(listener)
 function select(state) {
+
   return state.globalReducer.theme
 }
 
@@ -128,8 +129,9 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
             )
           },
           headerRight: (props) => {
+            console.log(navigation.getParam('isSaved'), 'isSavedLog')
             return(
-              <ArticleButton {...props} url={navigation.getParam('url')} theme={theme} />
+              <ArticleButton {...props} url={navigation.getParam('url')} isSaved={navigation.getParam('isSaved')} theme={theme} />
             )
           },
           headerTitle : "",

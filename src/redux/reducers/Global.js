@@ -27,7 +27,8 @@ export default (state = initialState, { type, payload }) => {
 
         // Unsaved Item from favorite by item ID
         case UNSAVED_ITEM: {
-            const items = state.savedItems.map((item) => item.id !== payload)
+            const items = state.savedItems.filter((item) => item.id !== payload)
+            console.log(items)
             return {
                 ...state,
                 savedItems: items
