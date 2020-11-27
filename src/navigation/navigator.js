@@ -75,6 +75,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   },
 }, {
   tabBar : (props) => <TopBarBottom {...props} />,
+  initialRouteName : 'Settings',
   tabBarOptions: {
     labelStyle: {
       fontWeight: 'bold'

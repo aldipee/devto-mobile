@@ -8,13 +8,13 @@ import DATA from '../../api/data.json'
 import NewsItem from '../newsItem'
 import { Styles } from './styleListNews'
 
-const ListNews = ({loading, data}) => {
+const ListNews = ({loading, data, ...props}) => {
   const renderItem = ({ item }) => (<NewsItem item={item} />)
   if(loading){
     const placeHolder = Array.from({ length: 5 }, (v, k) => k)
     return (
         <View style={Styles.container}>
-              {placeHolder.map((data,index) => (<NewsItemLoading key={`index-${index}`}/>))}
+              {placeHolder.map((data,index) => (<NewsItemLoading key={`index-${index}`} placeHolderColor={props.placeHolderColor}/>))}
         </View>
     );
   }

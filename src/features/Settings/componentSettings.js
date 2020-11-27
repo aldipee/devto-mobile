@@ -2,21 +2,19 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
     ScrollView,
     View,
     StatusBar,
     Text,
     TouchableOpacity
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { darkTheme, lightTheme } from 'styles/theme';
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import HeadlineCarousel from 'components/newsCarousel'
-import ListNews from 'components/ListNews'
-const App = (props) => {
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Styles, iconSize } from './styleSettings'
+import Toggle from 'components/toggler'
+
+const Settings = (props) => {
 
     const theme = useSelector((state) => state.globalReducer.theme)
     const onChangeTheme = () => {
@@ -25,90 +23,46 @@ const App = (props) => {
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <ScrollView style={{ flex: 1 }}>
-                <View style={[styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
-                    <View>
-                        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Pengaturan</Text>
+            <ScrollView style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }}>
+                <View style={[Styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
+                    <View style={Styles.headerContainer}>
+                        <Text style={[Styles.headerText, {color: '#8B95A2'}]}>Pengaturan</Text>
                     </View>
-                    <View style={styles.sectionContainer}>
-                        <TouchableOpacity onPress={onChangeTheme}>
-                            <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>{theme.mode === 'dark' ? 'Light Theme' : 'Dark Theme'}</Text>
-                        </TouchableOpacity>
+                    <View style={Styles.sectionContainer}>
+                   
+                            <View style={Styles.menuContainer}>
+                                <View style={{flexDirection : 'row'}}>
+                                    <Icon name={theme.mode === 'dark' ? 'sunny-outline' : 'moon-outline' }  size={iconSize} color={theme.PRIMARY_TEXT_COLOR}/>
+                                    <View>
+                                        <Text style={[Styles.textMenu, { color: theme.PRIMARY_TEXT_COLOR }]}>Dark Mode</Text>
+                                        <Text style={[Styles.textDesc,{ color: '#8B95A2'}]}>Enable dark mode for better experince</Text>
+                                    </View>
+                                   
+                                </View>
+                                <View> 
+                                    <Toggle isOn={theme.mode === 'dark'} width={60} height={32} onChange={onChangeTheme}/>
+                                </View>
+                           
+                            </View>
+                            <View style={{backgroundColor : '#8f8f8f', height : 0.5, flex : 1, width : '89%', alignSelf : 'flex-end'}} />
+                            <View style={Styles.menuContainer}>
+                                <View style={{flexDirection : 'row'}}>
+                                    <Icon name={'notifications-outline'}  size={iconSize} color={theme.PRIMARY_TEXT_COLOR}/>
+                                    <View>
+                                        <Text style={[Styles.textMenu, { color: theme.PRIMARY_TEXT_COLOR }]}>Notification</Text>
+                                        <Text style={[Styles.textDesc,{ color: '#8B95A2'}]}>Enable dark mode for better experince</Text>
+                                    </View>
+                                </View>
+                            </View>
+                
                     </View>
                 </View>
 
             </ScrollView>
-
         </>
     );
 };
 
-const styles = StyleSheet.create({
-    scrollView: {
-        flex: 1
-    },
-    engine: {
-        position: 'absolute',
-        right: 0,
-    },
-    body: {
-        backgroundColor: '#fff',
-    },
-    sectionContainer: {
-        marginTop: 10,
-        paddingHorizontal: 15,
-        height: '100%'
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: Colors.black,
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-        color: Colors.dark,
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-    footer: {
-        color: Colors.dark,
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingRight: 12,
-        textAlign: 'right',
-    },
-    carouselContainer: {
-        height: 230,
-        width: '100%',
-        flex: 1
-    },
-    // Start of Container Item Styles
-    containerItem: {
-        paddingHorizontal: 16,
-        paddingVertical: 10,
-        marginVertical: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#fff'
-    },
-    imageStyle: { borderRadius: 16, width: '100%', height: '100%' },
-    itemTitle: {
-        fontWeight: 'bold',
-        fontSize: 15,
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignContent: 'flex-start'
-    },
-    itemDate: {
-        fontSize: 10,
-        color: '#999999',
-        marginBottom: 10
-    }
-});
 
-export default App;
+
+export default Settings;

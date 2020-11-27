@@ -26,11 +26,11 @@ const App = (props) => {
             <ScrollView style={{ flex: 1 , backgroundColor  : theme.PRIMARY_BACKGROUND_COLOR }}>
                 <View style={[styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
                     <View style={styles.sectionContainer}>
-                        <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} />
+                        <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR}/>
                     </View>
                 </View>
                 <View style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, marginTop: 10 }}>
-                    <ListNews loading={props.loading} />
+                    <ListNews loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
                 </View>
             </ScrollView>
 

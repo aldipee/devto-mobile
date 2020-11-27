@@ -13,7 +13,7 @@ import {
   Placeholder,
   PlaceholderMedia,
   PlaceholderLine,
-  Fade
+  Fade,
 } from "rn-placeholder";
 import LinearGradient from 'react-native-linear-gradient'
 const w = Dimensions.get('window')
@@ -39,8 +39,8 @@ const App = (props) => {
   if (props.loading) {
     return (
 
-      <Placeholder>
-        <PlaceholderMedia isRound={false} style={{ width: '100%', height: 230 }} />
+      <Placeholder Animation={Fade}>
+        <PlaceholderMedia isRound={false} style={{ width: '100%', height: 230 }} color={props.placeHolderColor} />
       </Placeholder>
 
     )
