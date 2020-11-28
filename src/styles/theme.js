@@ -1,7 +1,7 @@
 export const darkTheme = {
     mode: 'dark',
     PRIMARY_BACKGROUND_COLOR: '#14181E',
-    SECONDARY_BACKROUND_COLOR: '#1C1C1C',
+    SECONDARY_BACKROUND_COLOR: '#222222',
     PRIMARY_TEXT_COLOR: '#FFF',
     SECONDARY_TEXT_COLOR: '#8B95A2',
     PRIMARY_BUTTON_COLOR: '#23A8D9',
@@ -9,6 +9,7 @@ export const darkTheme = {
     SEPERATOR_COLOR: '#383838',
     INACTIVE_COLOR: '#ebebeb',
     PLACEHOLDER_COLOR : '#333333',
+    PRIMARY_ICON_COLOR : '#cfcfcf',
     STATUS_BAR_STYLE: 'light-content'
 }
 export const lightTheme = {
@@ -21,6 +22,7 @@ export const lightTheme = {
     SEMANTIC_COLOR: '#14B4AD',
     SEPERATOR_COLOR: '#ebebeb',
     INACTIVE_COLOR: '#969696',
+    PRIMARY_ICON_COLOR : '#666666',
     PLACEHOLDER_COLOR : '#f3f3f3',
     STATUS_BAR_STYLE: 'default'
 }

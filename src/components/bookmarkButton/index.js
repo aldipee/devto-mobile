@@ -6,7 +6,7 @@ import { Styles, iconSize } from './styleBookMarkButton';
 const BookmarkButton = ({theme, isSaved,  ...props}) => {
     return (
         <View>
-            <Icon name={isSaved ?  'bookmark': 'bookmark-outline'} size={iconSize} color={theme.SEMANTIC_COLOR} />
+            <Icon name={isSaved ?  'bookmark': 'bookmark-outline'} size={iconSize} color={theme.PRIMARY_ICON_COLOR} />
         </View>
     );
 }

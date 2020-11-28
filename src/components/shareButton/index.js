@@ -8,7 +8,7 @@ const ShareButton = ({theme, ...props}) => {
     return (
         <TouchableOpacity onPress={() => onShare(props.url)}>
             <View>
-                <Icon name='share-social-outline' size={iconSize} color={theme.SEMANTIC_COLOR} />
+                <Icon name='share-social-outline' size={iconSize} color={theme.PRIMARY_ICON_COLOR} />
             </View>
         </TouchableOpacity>
     );

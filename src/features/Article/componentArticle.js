@@ -33,6 +33,12 @@ const placeHolder = Array.from({ length: 10 }, (v, k) => k)
 const ArticleLoading = ({theme, ...props}) =>(
     <>
     <Placeholder  >
+    
+    <View style={[Styles.containerTitle, {paddingTop : 40, marginBottom : 40, backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR, height : 20}}  />
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR, height : 20}} />
+          <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR, height : 20}} />
+        </View>
     <PlaceholderMedia isRound={false} style={[Styles.containerImage,{ backgroundColor : theme.PLACEHOLDER_COLOR}]} />
         <View style={[Styles.containerTitle, {paddingTop : 10, backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
           <PlaceholderLine style={{width : '100%', backgroundColor : theme.PLACEHOLDER_COLOR}}  />
@@ -78,12 +84,12 @@ const Article = (props) => {
                     </ScrollView>
                
                 ) : (
-                    <ScrollView style={{ flex: 1 , backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}} >
+                    <ScrollView style={{ flex: 1 , backgroundColor : theme.SECONDARY_BACKROUND_COLOR}} >
                         {/* Big Image */}
 
-
+                        <View style={{backgroundColor : '#000', flex : 1, height : 15 }}/>
                         {/* RenderMeta Data */}
-                        <View style={[Styles.containerMeta, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                        <View style={[Styles.containerMeta, {backgroundColor : theme.SECONDARY_BACKROUND_COLOR}]}>
                             <Icon color={theme.SECONDARY_TEXT_COLOR} name='md-earth' style={{backgroundColor : '#e3e3e3', padding : 3, borderRadius : 6}} size={17}/>
                             <Text style={Styles.textDate}>{ DATA &&  DATA.categories && DATA.categories[0].title} </Text>
                             <Icon color={theme.SECONDARY_TEXT_COLOR} name='ellipse' size={3}/>
@@ -91,12 +97,12 @@ const Article = (props) => {
                         </View>
 
                         {/* Render Title */}
-                        <View style={[Styles.containerTitle, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                        <View style={[Styles.containerTitle, {backgroundColor : theme.SECONDARY_BACKROUND_COLOR}]}>
                             <Text style={[Styles.textTitle, {color : theme.PRIMARY_TEXT_COLOR}]}>{  DATA && DATA.title}</Text>
                         </View>
 
                         {/* Render Author */}
-                        <View style={[Styles.containerAuthor, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                        <View style={[Styles.containerAuthor, {backgroundColor : theme.SECONDARY_BACKROUND_COLOR}]}>
                             <Text style={[Styles.author, {color : theme.PRIMARY_TEXT_COLOR}]}>{`${DATA && DATA.author && DATA.author.name}, ${DATA && DATA.author && DATA.author.description}`} </Text>
                         </View>
 
@@ -114,7 +120,7 @@ const Article = (props) => {
 
 
                         {/* Render HTML */}
-                        <View style={[Styles.containerContent, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                        <View style={[Styles.containerContent, {backgroundColor : theme.SECONDARY_BACKROUND_COLOR}]}>
                             <HTML html={DATA  && DATA.content} imagesMaxWidth={Dimensions.get('window').width} tagsStyles={{...HTMLTagStyle, p : {
                                 color : theme.PRIMARY_TEXT_COLOR,
                                 fontSize: 18,
@@ -143,7 +149,7 @@ const Styles = StyleSheet.create({
     },
     containerMeta : {
         paddingHorizontal: 20, 
-        paddingTop: 3, 
+        paddingTop: 20, 
         paddingBottom: 5,
         flexDirection : 'row',
         alignItems : 'center',

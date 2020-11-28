@@ -124,7 +124,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
             return (
               <HeaderBackButton
                 {...props}
-                tintColor={theme.PRIMARY_TEXT_COLOR}
+                tintColor={theme.PRIMARY_ICON_COLOR}
       
               />
             )
@@ -137,7 +137,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
           },
           headerTitle : "",
           headerStyle: {
-            backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+            backgroundColor: theme.SECONDARY_BACKROUND_COLOR,
             elevation: 0,
             height: 45,
           },
