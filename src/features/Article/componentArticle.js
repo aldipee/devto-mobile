@@ -23,6 +23,7 @@ import {
 // import DATA from 'api/single.json'
 // Local Import
 import ProgressiveImage from 'components/progressiveImage';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const w = Dimensions.get('window')
 
@@ -77,8 +78,31 @@ const Article = (props) => {
                     </ScrollView>
                
                 ) : (
-                    <ScrollView style={{ flex: 1 , backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}} stickyHeaderIndices={[1]}>
+                    <ScrollView style={{ flex: 1 , backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}} >
                         {/* Big Image */}
+
+
+                        {/* RenderMeta Data */}
+                        <View style={[Styles.containerMeta, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                            <Icon color={theme.SECONDARY_TEXT_COLOR} name='md-earth' style={{backgroundColor : '#e3e3e3', padding : 3, borderRadius : 6}} size={17}/>
+                            <Text style={Styles.textDate}>{ DATA &&  DATA.categories && DATA.categories[0].title} </Text>
+                            <Icon color={theme.SECONDARY_TEXT_COLOR} name='ellipse' size={3}/>
+                            <Text style={Styles.textDate}>{`${DATA  && DATA.date && formatTime(DATA.date, 'YYYY-MM-DD HH:mm:ss', 'DD MMMM YYYY, HH:mm')} WIB`}</Text>
+                        </View>
+
+                        {/* Render Title */}
+                        <View style={[Styles.containerTitle, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                            <Text style={[Styles.textTitle, {color : theme.PRIMARY_TEXT_COLOR}]}>{  DATA && DATA.title}</Text>
+                        </View>
+
+                        {/* Render Author */}
+                        <View style={[Styles.containerAuthor, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
+                            <Text style={[Styles.author, {color : theme.PRIMARY_TEXT_COLOR}]}>{`${DATA && DATA.author && DATA.author.name}, ${DATA && DATA.author && DATA.author.description}`} </Text>
+                        </View>
+
+                        {/* Seperator */}
+                        <View style={[Styles.seperator, { backgroundColor: theme.SEPERATOR_COLOR }]} />
+
                         {DATA && DATA.attachments && DATA.attachments.length !== 0 && (
                             <View style={Styles.containerImage}>
                                 <ProgressiveImage resizeMode="cover" thumbnailSource={{ uri: `${DATA && DATA.attachments && DATA.attachments[0].images['post-thumbnail'].url}` }}
@@ -88,19 +112,15 @@ const Article = (props) => {
                         )}
                         {/* End Of big Image */}
 
-                        {/* Render Title */}
-                        <View style={[Styles.containerTitle, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
-                            <Text style={[Styles.textTitle, {color : theme.PRIMARY_TEXT_COLOR}]}>{  DATA && DATA.title}</Text>
-                            <Text style={Styles.textDate}>{`${DATA  && DATA.date && formatTime(DATA.date, 'YYYY-MM-DD HH:mm:ss', 'dddd DD MMMM YYYY')} | ${DATA && DATA.categories &&  DATA.categories[0].title}`}</Text>
-                        </View>
 
                         {/* Render HTML */}
                         <View style={[Styles.containerContent, {backgroundColor : theme.PRIMARY_BACKGROUND_COLOR}]}>
                             <HTML html={DATA  && DATA.content} imagesMaxWidth={Dimensions.get('window').width} tagsStyles={{...HTMLTagStyle, p : {
                                 color : theme.PRIMARY_TEXT_COLOR,
-                                fontSize: 17,
-                                lineHeight: 25,
-                                marginTop: 25,
+                                fontSize: 18,
+                                lineHeight: 27,
+                                marginTop: 35,
+                                fontFamily : 'Lusitana-Regular'
                             }}} />
                         </View>
                         </ScrollView>
@@ -114,18 +134,29 @@ const Styles = StyleSheet.create({
     image : { height: '100%', width: '100%' },
     containerTitle : {
         paddingHorizontal: 20, backgroundColor: '#fff', paddingTop: 3, paddingBottom: 5,
-        elevation: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 4.00,
+   
+        
     },
-    textTitle : { fontWeight: 'bold', fontSize: 18 },
-    textDate : { fontSize: 14, color: '#878787' },
-    containerContent : { paddingHorizontal: 20, backgroundColor: '#fff', marginTop: 10, marginBottom: 20 }
+    author : {
+        fontFamily : 'Lusitana-Regular',
+        fontSize : 15
+    },
+    containerMeta : {
+        paddingHorizontal: 20, 
+        paddingTop: 3, 
+        paddingBottom: 5,
+        flexDirection : 'row',
+        alignItems : 'center',
+        
+    },
+    containerAuthor : {
+        paddingHorizontal: 20, 
+        marginBottom : 10
+    },
+    textTitle : {fontSize: 21, fontFamily : 'Lato-Black', lineHeight : 33, marginBottom :10, paddingBottom : 10 },
+    textDate : { fontSize: 14, color: '#878787', fontFamily : 'Lato-Regular', marginHorizontal : 6},
+    containerContent : { paddingHorizontal: 20, backgroundColor: '#fff', marginTop: 10, marginBottom: 20 },
+    seperator: { backgroundColor: '#ebebeb', height: 1.3, width: '90%', flex: 1, alignSelf: 'center', marginBottom : 30 }
 
 })
 
@@ -135,6 +166,7 @@ const HTMLTagStyle = {
         fontSize: 17,
         lineHeight: 25,
         marginTop: 25,
+        fontFamily : 'Lato-Bold'
     },
     img: {
         width: 600

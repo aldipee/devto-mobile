@@ -14,7 +14,8 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2,
   blacklist: [
     'articleReducer',
-    'homeReducer'
+    'homeReducer',
+    'globalReducer'
   ],
 };
 const persistRootReducer = persistReducer(persistConfig, rootReducer)

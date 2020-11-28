@@ -2,10 +2,10 @@
 
 import React, { useEffect } from 'react';
 import {
-  StyleSheet,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 import {
   Placeholder,
@@ -38,7 +38,7 @@ const NewsItem = ({ item, ...props }) => {
 
   const onSave = (post) => {
     !post.isSaved ? props.saveItem(post) : props.unsavedItem(post.id)
-    
+    ToastAndroid.show(`${post.isSaved ? 'Article Saved' : 'Article Unsaved'}`, ToastAndroid.SHORT)
   }
 
 

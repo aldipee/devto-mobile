@@ -19,6 +19,8 @@ export default (state = initialState, { type, payload }) => {
 
         // Save Item on favorite
         case SAVE_ITEM: {
+            // change save status to true
+            payload.isSaved = true
             return {
                 ...state,
                 savedItems: [...state.savedItems, payload]

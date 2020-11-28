@@ -46,6 +46,8 @@
 		3B63829AC10D4C7C8332E8AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F633C68907443EB82D412DF /* Octicons.ttf */; };
 		6E5FF45E8D464CB69218073A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2766D1AA78594CFD8EBF4F60 /* SimpleLineIcons.ttf */; };
 		BA1D0BD7FA294BE3A21884FF /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3A0630C9AFE42FD879C453A /* Zocial.ttf */; };
+		FAEF24BD6B174410BF23029E /* Lusitana-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BD6492C024B8D9D23D697 /* Lusitana-Bold.ttf */; };
+		A5A67E6D55404CE9A0AE2688 /* Lusitana-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49BBEFA3F76D4F3DAA20286F /* Lusitana-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		8F633C68907443EB82D412DF /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2766D1AA78594CFD8EBF4F60 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A3A0630C9AFE42FD879C453A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4C3BD6492C024B8D9D23D697 /* Lusitana-Bold.ttf */ = {isa = PBXFileReference; name = "Lusitana-Bold.ttf"; path = "../src/assets/fonts/Lusitana-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		49BBEFA3F76D4F3DAA20286F /* Lusitana-Regular.ttf */ = {isa = PBXFileReference; name = "Lusitana-Regular.ttf"; path = "../src/assets/fonts/Lusitana-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,8 @@
 				8F633C68907443EB82D412DF /* Octicons.ttf */,
 				2766D1AA78594CFD8EBF4F60 /* SimpleLineIcons.ttf */,
 				A3A0630C9AFE42FD879C453A /* Zocial.ttf */,
+				4C3BD6492C024B8D9D23D697 /* Lusitana-Bold.ttf */,
+				49BBEFA3F76D4F3DAA20286F /* Lusitana-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -455,6 +461,8 @@
 				3B63829AC10D4C7C8332E8AC /* Octicons.ttf in Resources */,
 				6E5FF45E8D464CB69218073A /* SimpleLineIcons.ttf in Resources */,
 				BA1D0BD7FA294BE3A21884FF /* Zocial.ttf in Resources */,
+				FAEF24BD6B174410BF23029E /* Lusitana-Bold.ttf in Resources */,
+				A5A67E6D55404CE9A0AE2688 /* Lusitana-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
