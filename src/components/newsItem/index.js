@@ -25,7 +25,7 @@ const NewsItem = ({ item, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
     const date = momentWithLocales(dateTime, currentFormat);
     date.locale('id');
-    return date.format(toFormat);
+    return `${date.fromNow(true)} yang lalu`;
   }
   const navigation = useNavigation();
 

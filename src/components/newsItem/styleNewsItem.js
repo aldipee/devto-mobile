@@ -25,9 +25,10 @@ export const Styles = StyleSheet.create({
     letterSpacing : 0.5,
   },
   itemDate: {
-    fontSize: MainResponsiveFontSize.font10,
+    fontSize: MainResponsiveFontSize.font12,
     color: '#999999',
     marginBottom: moderateScale(7),
+    fontFamily : 'Lato-Bold',
     marginTop : moderateScale(10)
   },
   itemCategory: {
