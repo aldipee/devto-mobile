@@ -7,13 +7,15 @@ import store from 'redux/store';
 const { globalReducer: { theme } } = store.getState()
 // Import all screens
 import Home from './containerHome'
+import Blog from './subComponent/blog/containerBlog';
+import Rilis from './subComponent/rilis/containeRilis';
+
 
 const TopBar = createCompatNavigatorFactory(createMaterialTopTabNavigator)({
     Terbaru: { screen: Home },
-    Rilis: { screen: Home },
-    Blog: { screen: Home }
+    Blog: { screen: Blog }
 }, {
-    tabBar : (props) => <TabBarTop {...props} />,
+    tabBar: (props) => <TabBarTop {...props} />,
     tabBarOptions: {
         labelStyle: {
             fontWeight: 'bold',

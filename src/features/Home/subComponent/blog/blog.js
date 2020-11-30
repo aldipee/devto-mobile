@@ -16,7 +16,7 @@ import HeadlineCarousel from 'components/newsCarousel'
 import ListNews from 'components/ListNews'
 const Home = (props) => {
     useEffect(() => {
-        props.requestRecentNews('recent')
+        props.requestRecentNews('blog')
     }, [])
     const theme = useSelector((state) => state.globalReducer.theme)
 
@@ -30,7 +30,7 @@ const Home = (props) => {
                     </View>
                 </View>
                 <View style={{ backgroundColor: theme.SECONDARY_BACKROUND_COLOR, marginTop: 10 }}>
-                    <ListNews newsCategory='recent' loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
+                    <ListNews newsCategory='blog' loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
                 </View>
             </ScrollView>
 

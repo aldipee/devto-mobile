@@ -9,7 +9,7 @@ import {
     Text
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {Styles} from './styleSaved'
+import { Styles } from './styleSaved'
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
@@ -25,16 +25,16 @@ const SavedNews = (props) => {
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <ScrollView style={{ flex: 1 , backgroundColor  : theme.PRIMARY_BACKGROUND_COLOR }}>
+            <ScrollView style={{ flex: 1, backgroundColor: theme.SECONDARY_BACKROUND_COLOR }}>
                 <View style={Styles.headerContainer}>
-                    <Text style={[Styles.headerText, {color : theme.PRIMARY_TEXT_COLOR}]}>Favorit</Text>
-                    <View style={{flexDirection : 'row', alignItems : 'center', marginTop : 6}}>
-                        <Icon color={theme.SECONDARY_TEXT_COLOR} name='ellipse' size={6}/>
-    <Text style={[Styles.textDesc, {color : theme.SECONDARY_TEXT_COLOR}]}>{`${props.data.length} berita favorit`}</Text>
+                    <Text style={[Styles.headerText, { color: theme.PRIMARY_TEXT_COLOR }]}>Favorit</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 6 }}>
+                        <Icon color={theme.SECONDARY_TEXT_COLOR} name='ellipse' size={6} />
+                        <Text style={[Styles.textDesc, { color: theme.SECONDARY_TEXT_COLOR }]}>{`${props.data.length} berita favorit`}</Text>
                     </View>
                 </View>
-                <View style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, marginVertical: 20 }}>
-                    <ListNews saved={props.data}  placeHolderColor={theme.PLACEHOLDER_COLOR} />
+                <View style={{ backgroundColor: theme.SECONDARY_BACKROUND_COLOR, marginVertical: 20 }}>
+                    <ListNews saved={props.data} placeHolderColor={theme.PLACEHOLDER_COLOR} />
                 </View>
             </ScrollView>
 

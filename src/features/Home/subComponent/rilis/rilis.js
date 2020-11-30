@@ -16,21 +16,21 @@ import HeadlineCarousel from 'components/newsCarousel'
 import ListNews from 'components/ListNews'
 const Home = (props) => {
     useEffect(() => {
-        props.requestRecentNews('recent')
+        props.requestRecentNews('umum')
     }, [])
     const theme = useSelector((state) => state.globalReducer.theme)
 
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <ScrollView style={{ flex: 1, backgroundColor: theme.SECONDARY_BACKROUND_COLOR }}>
-                <View style={[styles.body, { backgroundColor: theme.SECONDARY_BACKROUND_COLOR }]}>
+            <ScrollView style={{ flex: 1, backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }}>
+                <View style={[styles.body, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
                     <View style={styles.sectionContainer}>
                         <HeadlineCarousel containerStyle={styles.carouselContainer} loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
                     </View>
                 </View>
-                <View style={{ backgroundColor: theme.SECONDARY_BACKROUND_COLOR, marginTop: 10 }}>
-                    <ListNews newsCategory='recent' loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
+                <View style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, marginTop: 10 }}>
+                    <ListNews newsCategory='umum' loading={props.loading} placeHolderColor={theme.PLACEHOLDER_COLOR} />
                 </View>
             </ScrollView>
 

@@ -21,7 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 import { onShare } from 'utilities/onShare'
 import { connect, useSelector } from 'react-redux';
 import { saveItem, unsavedItem } from 'redux/actions/Global';
-const NewsItem = ({ item, ...props }) => {
+const NewsItem = ({ item, newsCategory, ...props }) => {
   const formatTime = (dateTime, currentFormat, toFormat) => {
     const date = momentWithLocales(dateTime, currentFormat);
     date.locale('id');
@@ -33,7 +33,7 @@ const NewsItem = ({ item, ...props }) => {
   }, [])
   const theme = useSelector(state => state.globalReducer.theme)
   const onPress = (idPost, url, isSaved) => {
-    navigation.navigate('Article', { idPost, url, theme, isSaved})
+    navigation.navigate('Article', { idPost, url, theme, isSaved })
   }
 
   const onSave = (post) => {
@@ -44,7 +44,7 @@ const NewsItem = ({ item, ...props }) => {
 
   return (
     <React.Fragment>
-      <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
+      <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.SECONDARY_BACKROUND_COLOR }]}>
         <View style={{ flex: 1, flexDirection: 'column' }}>
           <TouchableOpacity onPress={() => onPress(item.id, item.url, item.isSaved)}>
             <Text style={[Styles.itemTitle, { color: theme.PRIMARY_TEXT_COLOR }]}>{item.title}</Text>
@@ -66,7 +66,8 @@ const NewsItem = ({ item, ...props }) => {
         </View>
         {item.attachments.length !== 0 && (
           <View style={{ height: 130, width: 120, marginLeft: 20 }}>
-            <ProgressiveImage thumbnailSource={{ uri: item.attachments[0].images["post-thumbnail"].url }} source={{ uri: item.attachments[0].images.medium.url }} style={Styles.imageStyle} resizeMode="cover" />
+
+            <ProgressiveImage thumbnailSource={{ uri: item.attachments[0].images["post-thumbnail"] && item.attachments[0].images["post-thumbnail"].url ? item.attachments[0].images["post-thumbnail"].url : 'https://demofree.sirv.com/nope-not-here.jpg' }} source={{ uri: item.attachments[0].images.medium && item.attachments[0].images.medium.url ? item.attachments[0].images.medium.url : 'https://demofree.sirv.com/nope-not-here.jpg' }} style={Styles.imageStyle} resizeMode="cover" />
           </View>
         )}
 
@@ -77,26 +78,26 @@ const NewsItem = ({ item, ...props }) => {
 };
 
 
-export const NewsItemLoading = ({placeHolderColor}) => {
+export const NewsItemLoading = ({ placeHolderColor }) => {
 
 
   return (
     <Placeholder
       Animation={Fade}
       Right={props => (
-        <PlaceholderMedia isRound={false} style={[props.style], { width: 120, height: 130 }}  color={placeHolderColor}/>
+        <PlaceholderMedia isRound={false} style={[props.style], { width: 120, height: 130 }} color={placeHolderColor} />
       )}
       style={Styles.containerItem}
     >
       <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
         <View >
-          <PlaceholderLine width={90} color={placeHolderColor}/>
-          <PlaceholderLine width={90} color={placeHolderColor}/>
-          <PlaceholderLine width={90} color={placeHolderColor}/>
+          <PlaceholderLine width={90} color={placeHolderColor} />
+          <PlaceholderLine width={90} color={placeHolderColor} />
+          <PlaceholderLine width={90} color={placeHolderColor} />
         </View>
         <View >
           <PlaceholderLine width={60} style={{ justifyContent: 'flex-end', height: 10, marginBottom: 4 }} color={placeHolderColor} />
-          <PlaceholderLine width={40} style={{ justifyContent: 'flex-end', height: 12, marginBottom: 0 }} color={placeHolderColor}/>
+          <PlaceholderLine width={40} style={{ justifyContent: 'flex-end', height: 12, marginBottom: 0 }} color={placeHolderColor} />
         </View>
 
       </View>
@@ -107,4 +108,4 @@ export const NewsItemLoading = ({placeHolderColor}) => {
 
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, { saveItem, unsavedItem})(NewsItem);
+export default connect(mapStateToProps, { saveItem, unsavedItem })(NewsItem);
