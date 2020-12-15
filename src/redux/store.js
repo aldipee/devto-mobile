@@ -5,7 +5,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import logger from 'redux-logger';
 import rootReducer from './reducers';
-import watcherSaga from './watcherSaga';
+import {watcherSaga} from 'redux/watcherSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
