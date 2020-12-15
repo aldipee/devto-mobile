@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "ENVFILE=.env.dev react-native run-android",
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -34,6 +34,7 @@
     "react-native-screens": "^2.15.0",
     "react-native-share": "^4.1.0",
     "react-native-size-matters": "^0.3.1",
+    "react-native-ssl-pinning": "^1.5.2",
     "react-native-tab-view": "^2.15.2",
     "react-native-vector-icons": "^7.1.0",
     "react-native-webview": "^10.10.2",

@@ -12,7 +12,7 @@ import Home from 'features/Home/routerHome'
 import Saved from 'features/Saved/containerSaved'
 import Article from 'features/Article/containerArticle';
 import Settings from 'features/Settings/containerSettings';
-import Header from 'components/header'
+import Covid from 'features/Covid/containerCovid'
 import store from 'redux/store';
 // const { globalReducer: { theme } } = store.getState()
 
@@ -43,16 +43,17 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
       ),
     })
   },
-  Media: {
-    screen: Home,
+  Covid: {
+    screen: Covid,
     navigationOptions: ({ navigation }) => ({
       barStyle: {
         backgroundColor: 'red'
       },
       shifting: true,
       labeled: true,
+      tabBarLabel: 'Covid-19',
       tabBarIcon: ({ color, size }) => (
-        <Icon name='images-outline' size={size} color={color} />
+        <Icon name='information-circle-outline' size={size} color={color} />
       ),
     })
   },
@@ -77,8 +78,8 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
     })
   },
 }, {
-  tabBar : (props) => <TopBarBottom {...props} />,
-  initialRouteName : 'Saved',
+  tabBar: (props) => <TopBarBottom {...props} />,
+  initialRouteName: 'Covid',
   tabBarOptions: {
     labelStyle: {
       fontWeight: 'bold'
@@ -125,17 +126,17 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
               <HeaderBackButton
                 {...props}
                 tintColor={theme.PRIMARY_ICON_COLOR}
-      
+
               />
             )
           },
           headerRight: (props) => {
             console.log(navigation.getParam('isSaved'), 'isSavedLog')
-            return(
+            return (
               <ArticleButton {...props} url={navigation.getParam('url')} isSaved={navigation.getParam('isSaved')} theme={theme} />
             )
           },
-          headerTitle : "",
+          headerTitle: "",
           headerStyle: {
             backgroundColor: theme.SECONDARY_BACKROUND_COLOR,
             elevation: 0,
@@ -169,7 +170,7 @@ export const RootNavigator = createCompatNavigatorFactory(createStackNavigator)(
 
 
 const Navigator = () => {
- 
+
 
   return (
     <NavigationContainer>

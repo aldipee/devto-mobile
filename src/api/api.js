@@ -4,7 +4,7 @@ import store from 'redux/store';
 import { call, put as putEffect, take, select, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 // import { INTERNET_CONNECTION_CHANGED, INTERNET_LOST } from '../shared/actions/actions_global';
-// import { fetch } from 'react-native-ssl-pinning';
+import { fetch } from 'react-native-ssl-pinning';
 
 const urls = ['http://sehatnegeriku.kemkes.go.id/'];
 
@@ -112,6 +112,10 @@ function* doRequest(endpoint, { method = 'GET', language, headers, params, url =
     }
     let result = yield fetch(`${currentUrl}${endpoint}`, {
         method,
+        pkPinning: true,
+        sslPinning: {
+            certs: ["sha256/47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="] 
+        },
         headers: { ...allHeaders },
         body,
     })
