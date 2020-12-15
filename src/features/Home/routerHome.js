@@ -13,7 +13,6 @@ import Rilis from './subComponent/rilis/containeRilis';
 
 const TopBar = createCompatNavigatorFactory(createMaterialTopTabNavigator)({
     Terbaru: { screen: Home },
-    Blog: { screen: Blog }
 }, {
     tabBar: (props) => <TabBarTop {...props} />,
     tabBarOptions: {
@@ -24,3 +23,4 @@ const TopBar = createCompatNavigatorFactory(createMaterialTopTabNavigator)({
     }
 })
 export default TopBar
+

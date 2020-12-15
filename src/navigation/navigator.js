@@ -8,31 +8,16 @@ import ArticleButton from 'components/articleButton';
 import TopBarBottom from 'components/tabBarBottom'
 
 // Import all screens
-import Home from 'features/Home/routerHome'
+import Home from 'features/Home/containerHome'
 import Saved from 'features/Saved/containerSaved'
 import Article from 'features/Article/containerArticle';
 import Settings from 'features/Settings/containerSettings';
-import Covid from 'features/Covid/containerCovid'
-import store from 'redux/store';
-// const { globalReducer: { theme } } = store.getState()
 
-store.subscribe(listener)
-function select(state) {
-
-  return state.globalReducer.theme
-}
-
-function listener() {
-  let data = select(store.getState())
-  return data
-}
-const theme = listener()
 
 
 const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
   Home: {
     screen: Home,
-
     activeColor: '#181A1B',
     navigationOptions: ({ navigation }) => ({
       shifting: true,
@@ -43,20 +28,7 @@ const BottomBar = createCompatNavigatorFactory(createBottomTabNavigator)({
       ),
     })
   },
-  Covid: {
-    screen: Covid,
-    navigationOptions: ({ navigation }) => ({
-      barStyle: {
-        backgroundColor: 'red'
-      },
-      shifting: true,
-      labeled: true,
-      tabBarLabel: 'Covid-19',
-      tabBarIcon: ({ color, size }) => (
-        <Icon name='information-circle-outline' size={size} color={color} />
-      ),
-    })
-  },
+
   Saved: {
     screen: Saved,
     navigationOptions: ({ navigation }) => ({
