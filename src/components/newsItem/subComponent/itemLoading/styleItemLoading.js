@@ -1,5 +1,5 @@
 import {scale, moderateScale} from 'react-native-size-matters';
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {MainResponsiveFontSize} from 'GlobalStyles';
 
 export const Styles = StyleSheet.create({
@@ -11,6 +11,12 @@ export const Styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  loadingContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  loadingBottom: {justifyContent: 'flex-end', height: 10, marginBottom: 4},
   imageStyle: {borderRadius: moderateScale(16), width: '100%', height: '100%'},
   itemTitle: {
     fontSize: MainResponsiveFontSize.font15,

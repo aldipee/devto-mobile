@@ -1,111 +1,103 @@
+import React, {useEffect} from 'react';
+import {View, Text, TouchableOpacity, ToastAndroid} from 'react-native';
 
-
-import React, { useEffect } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ToastAndroid
-} from 'react-native';
-import {
-  Placeholder,
-  PlaceholderMedia,
-  PlaceholderLine,
-  Fade
-} from "rn-placeholder";
 import ProgressiveImage from '../progressiveImage';
 import momentWithLocales from 'moment/min/moment-with-locales';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { Styles } from './styleNewsItem'
-import { useNavigation } from '@react-navigation/native';
-import { onShare } from 'utilities/onShare'
-import { connect, useSelector } from 'react-redux';
-import { saveItem, unsavedItem } from 'redux/actions/Global';
-const NewsItem = ({ item, newsCategory, ...props }) => {
-  const formatTime = (dateTime, currentFormat, toFormat) => {
-    const date = momentWithLocales(dateTime, currentFormat);
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {NewsItemLoading} from './subComponent/itemLoading/compItemLoading';
+import {Styles} from './styleNewsItem';
+import {useNavigation} from '@react-navigation/native';
+import {onShare} from 'utilities/onShare';
+import {connect, useSelector} from 'react-redux';
+import {saveItem, unsavedItem} from 'redux/actions/Global';
+const NewsItem = ({item, newsCategory, ...props}) => {
+  const formatTime = (dateTime, toFormat) => {
+    const date = momentWithLocales(dateTime);
     date.locale('id');
     return `${date.fromNow(true)} yang lalu`;
-  }
+  };
   const navigation = useNavigation();
 
-  useEffect(() => {
-  }, [])
-  const theme = useSelector(state => state.globalReducer.theme)
+  useEffect(() => {}, []);
+  const theme = useSelector((state) => state.globalReducer.theme);
   const onPress = (idPost, url, isSaved) => {
-    navigation.navigate('Article', { idPost, url, theme, isSaved })
-  }
+    navigation.navigate('Article', {idPost, url, theme, isSaved});
+  };
 
   const onSave = (post) => {
-    !post.isSaved ? props.saveItem(post) : props.unsavedItem(post.id)
-    ToastAndroid.show(`${post.isSaved ? 'Article Saved' : 'Article Unsaved'}`, ToastAndroid.SHORT)
-  }
-
+    !post.isSaved ? props.saveItem(post) : props.unsavedItem(post.id);
+    ToastAndroid.show(
+      `${post.isSaved ? 'Article Saved' : 'Article Unsaved'}`,
+      ToastAndroid.SHORT,
+    );
+  };
 
   return (
     <React.Fragment>
-      <View key={`${item.title}-${item.id}`} style={[Styles.containerItem, { backgroundColor: theme.SECONDARY_BACKROUND_COLOR }]}>
-        <View style={{ flex: 1, flexDirection: 'column' }}>
-          <TouchableOpacity onPress={() => onPress(item.id, item.url, item.isSaved)}>
-            <Text style={[Styles.itemTitle, { color: theme.PRIMARY_TEXT_COLOR }]}>{item.title}</Text>
+      <View
+        key={`${item.slug}-${item.id}`}
+        style={[
+          Styles.containerItem,
+          {backgroundColor: theme.SECONDARY_BACKROUND_COLOR},
+        ]}>
+        <View style={Styles.titleWrapper}>
+          <TouchableOpacity
+            onPress={() => onPress(item.id, item.url, item.isSaved)}>
+            <Text style={[Styles.itemTitle, {color: theme.PRIMARY_TEXT_COLOR}]}>
+              {item.title}
+            </Text>
           </TouchableOpacity>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-            <View style={{ flexDirection: 'column' }}>
-              <Text style={[Styles.itemDate, { color: theme.SECONDARY_TEXT_COLOR }]}>{item.modified && formatTime(item.modified, 'YYYY-MM-DD HH:mm:ss', 'dddd, DD MMMM YYYY')}</Text>
-              {/* <Text style={[Styles.itemCategory, { backgroundColor: theme.SEMANTIC_COLOR }]}>{item.categories[0].title}</Text> */}
+          <View style={Styles.descriptionWrapper}>
+            <View style={{flexDirection: 'column'}}>
+              <Text
+                style={[Styles.author, {color: theme.SECONDARY_TEXT_COLOR}]}>
+                {item.user.name}
+              </Text>
+              <Text
+                style={[Styles.itemDate, {color: theme.SECONDARY_TEXT_COLOR}]}>
+                {item.published_at &&
+                  formatTime(item.published_at, 'dddd, DD MMMM YYYY')}
+              </Text>
+              {/* <Text style={[Styles.itemCategory, { backgroundColor: theme.SEMANTIC_COLOR }]}>{item.user.name}</Text> */}
             </View>
-            <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-              <TouchableOpacity style={{ marginRight: 10 }} onPress={() => onShare(item.url)}>
-                <Icon name='share-social-outline' size={20} color={theme.PRIMARY_TEXT_COLOR} />
+            <View style={Styles.buttonWrapper}>
+              <TouchableOpacity
+                style={{marginRight: 10}}
+                onPress={() => onShare(item.url)}>
+                <Icon
+                  name="share-social-outline"
+                  size={20}
+                  color={theme.PRIMARY_TEXT_COLOR}
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => onSave(item)}>
-                <Icon name={item.isSaved ? 'bookmark' : 'bookmark-outline'} size={20} color={theme.PRIMARY_TEXT_COLOR} />
+                <Icon
+                  name={item.isSaved ? 'bookmark' : 'bookmark-outline'}
+                  size={20}
+                  color={theme.PRIMARY_TEXT_COLOR}
+                />
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        {item.attachments.length !== 0 && (
-          <View style={{ height: 130, width: 120, marginLeft: 20 }}>
 
-            <ProgressiveImage thumbnailSource={{ uri: item.attachments[0].images["post-thumbnail"] && item.attachments[0].images["post-thumbnail"].url ? item.attachments[0].images["post-thumbnail"].url : 'https://demofree.sirv.com/nope-not-here.jpg' }} source={{ uri: item.attachments[0].images.medium && item.attachments[0].images.medium.url ? item.attachments[0].images.medium.url : 'https://demofree.sirv.com/nope-not-here.jpg' }} style={Styles.imageStyle} resizeMode="cover" />
-          </View>
-        )}
-
+        <View style={Styles.imageWrapper}>
+          <ProgressiveImage
+            source={{uri: item.cover_image}}
+            thumbnailSource={{uri: item.cover_image}}
+            style={Styles.imageStyle}
+            resizeMode="cover"
+          />
+        </View>
       </View>
-      <View style={[Styles.seperator, { backgroundColor: theme.SEPERATOR_COLOR }]} />
-    </React.Fragment >
+      <View
+        style={[Styles.seperator, {backgroundColor: theme.SEPERATOR_COLOR}]}
+      />
+    </React.Fragment>
   );
 };
 
+const mapStateToProps = (state) => ({});
 
-export const NewsItemLoading = ({ placeHolderColor }) => {
-
-
-  return (
-    <Placeholder
-      Animation={Fade}
-      Right={props => (
-        <PlaceholderMedia isRound={false} style={[props.style], { width: 120, height: 130 }} color={placeHolderColor} />
-      )}
-      style={Styles.containerItem}
-    >
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-        <View >
-          <PlaceholderLine width={90} color={placeHolderColor} />
-          <PlaceholderLine width={90} color={placeHolderColor} />
-          <PlaceholderLine width={90} color={placeHolderColor} />
-        </View>
-        <View >
-          <PlaceholderLine width={60} style={{ justifyContent: 'flex-end', height: 10, marginBottom: 4 }} color={placeHolderColor} />
-          <PlaceholderLine width={40} style={{ justifyContent: 'flex-end', height: 12, marginBottom: 0 }} color={placeHolderColor} />
-        </View>
-
-      </View>
-
-    </Placeholder>
-  )
-}
-
-const mapStateToProps = (state) => ({})
-
-export default connect(mapStateToProps, { saveItem, unsavedItem })(NewsItem);
+export default connect(mapStateToProps, {saveItem, unsavedItem})(NewsItem);
